@@ -6,7 +6,9 @@ complete -c eww -n "not __fish_seen_subcommand_from $commands" -a "$commands"
 
 complete -c eww -n "__fish_seen_subcommand_from open" -a "(eww list-windows)"
 complete -c eww -n "__fish_seen_subcommand_from open-many" -a "(eww list-windows)"
-complete -c eww -n "__fish_seen_subcommand_from close" -a "(eww list-windows)"
+complete -c eww -n "__fish_seen_subcommand_from close" -a "(eww active-windows | cut -d ':' -f 1)"
+complete -c eww -n "__fish_seen_subcommand_from get" -a "(eww state | cut -d ':' -f 1)"
+complete -c eww -n "__fish_seen_subcommand_from update" -a "(eww state | awk -F ':' '!/EWW/ { print \$1 }')"
 
 # Options
 complete -c eww -l debug -d "Write out debug logs. (To read logs, run `eww logs`)"
